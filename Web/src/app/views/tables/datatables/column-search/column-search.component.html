@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <app-page-title subTitle="DataTables" title="Column Searching"/>
+    <div class="row justify-content-center">
+        <div class="col-xxl-10">
+            <app-ui-card title="Example">
+                <a href="https://datatables.net/examples/api/multi_filter.html" target="_blank"
+                   class="icon-link icon-link-hover link-primary fw-semibold">View Docs
+                    <ng-icon
+                        name="tablerArrowRight" class="bi fs-lg"/>
+                </a>
+                <div card-body>
+                    <table datatable [dtOptions]="dtOptions" id="column-search-data"
+                           class="table dt-responsive align-middle mb-0">
+                        <thead class="thead-sm text-uppercase fs-xxs">
+                        <tr>
+                            <th>Company</th>
+                            <th>Symbol</th>
+                            <th>Price</th>
+                            <th>Change</th>
+                            <th>Volume</th>
+                            <th>Market Cap</th>
+                            <th>Rating</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr class="column-search-input-bar">
+                            <th><input type="text" placeholder="Company"
+                                       class="form-control form-control-sm bg-light-subtle border-light"></th>
+                            <th><input type="text" placeholder="Symbol"
+                                       class="form-control form-control-sm bg-light-subtle border-light"></th>
+                            <th><input type="text" placeholder="Price"
+                                       class="form-control form-control-sm bg-light-subtle border-light"></th>
+                            <th><input type="text" placeholder="Change"
+                                       class="form-control form-control-sm bg-light-subtle border-light"></th>
+                            <th><input type="text" placeholder="Volume"
+                                       class="form-control form-control-sm bg-light-subtle border-light"></th>
+                            <th><input type="text" placeholder="Market Cap"
+                                       class="form-control form-control-sm bg-light-subtle border-light"></th>
+                            <th><input type="text" placeholder="Rating"
+                                       class="form-control form-control-sm bg-light-subtle border-light"></th>
+                            <th><input type="text" placeholder="Status"
+                                       class="form-control form-control-sm bg-light-subtle border-light"></th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </app-ui-card>
+        </div>
+    </div>
+
+</div>

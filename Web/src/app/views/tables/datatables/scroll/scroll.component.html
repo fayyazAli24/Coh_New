@@ -1,0 +1,92 @@
+<div class="container-fluid">
+
+    <app-page-title subTitle="datatables" title="Scroll"/>
+
+    <div class="row justify-content-center">
+        <div class="col-xxl-10">
+            <app-ui-card title="Vertical Scroll">
+                <a helper-text href="https://datatables.net/examples/basic_init/scroll_y.html" target="_blank"
+                   class="icon-link icon-link-hover link-primary fw-semibold">View Docs
+                    <ng-icon
+                        name="tablerArrowRight" class="bi fs-lg"/>
+                </a>
+
+                <div card-body>
+                    <table datatable [dtOptions]="verticalScrollOptions" id="vertical-scroll"
+                           class="table table-striped w-100 align-middle mb-0">
+                        <thead class="thead-sm text-uppercase fs-xxs">
+                        <tr>
+                            <th>Company</th>
+                            <th>Symbol</th>
+                            <th>Price</th>
+                            <th>Change</th>
+                            <th>Volume</th>
+                            <th>Market Cap</th>
+                            <th>Rating</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @for (item of tableData; track $index) {
+                                <tr>
+                                    <td>{{ item.company }}</td>
+                                    <td>{{ item.symbol }}</td>
+                                    <td>{{ currency }}{{ item.price }}</td>
+                                    <td>{{ item.change }}%</td>
+                                    <td>{{ item.volume }}</td>
+                                    <td>{{ currency }}{{ item.marketCap }}</td>
+                                    <td>{{ item.rating }} ★</td>
+                                    <td><span
+                                        class="badge badge-label  {{item.status==='Bullish' ? 'badge-soft-success' : 'badge-soft-danger'}} ">{{ item.status }}</span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </app-ui-card>
+
+            <app-ui-card title="Horizontal Scroll">
+                <a helper-text href="https://datatables.net/examples/basic_init/scroll_x.html" target="_blank"
+                   class="icon-link icon-link-hover link-primary fw-semibold">View Docs
+                    <ng-icon
+                        name="tablerArrowRight" class="bi fs-lg"/>
+                </a>
+                <div card-body>
+                    <table datatable [dtOptions]="horizontalScrollOptions" id="horizontal-scroll"
+                           class="table table-striped align-middle mb-0">
+                        <thead class="thead-sm text-uppercase fs-xxs">
+                        <tr>
+                            <th>Company</th>
+                            <th>Symbol</th>
+                            <th>Price</th>
+                            <th>Change</th>
+                            <th>Volume</th>
+                            <th>Market Cap</th>
+                            <th>Rating</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @for (item of tableData; track $index) {
+                                <tr>
+                                    <td>{{ item.company }}</td>
+                                    <td>{{ item.symbol }}</td>
+                                    <td>{{ currency }}{{ item.price }}</td>
+                                    <td>{{ item.change }}%</td>
+                                    <td>{{ item.volume }}</td>
+                                    <td>{{ currency }}{{ item.marketCap }}</td>
+                                    <td>{{ item.rating }} ★</td>
+                                    <td><span
+                                        class="badge badge-label  {{item.status==='Bullish' ? 'badge-soft-success' : 'badge-soft-danger'}} ">{{ item.status }}</span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </app-ui-card>
+
+        </div>
+    </div>
+</div>
