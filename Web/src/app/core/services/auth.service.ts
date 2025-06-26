@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 
 interface Facility {
   employeeId: number;
@@ -29,7 +31,7 @@ export class AuthService {
 
 
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router: Router) {}
 
    login(username: string, password: string): Observable<void> {
      debugger
@@ -54,10 +56,42 @@ export class AuthService {
   }
 
 
-  logout(): void {
+
+logout(): Observable<any> {
+   debugger
+     const token = localStorage.getItem(this.tokenKey);
+    
     localStorage.removeItem(this.tokenKey);
-    this.http.post(`${this.baseUrl}/AuthenticateToken/Logout`, {}).subscribe(); 
-  }
+    sessionStorage.clear();
+
+    const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`,
+        'accept': '*/*'
+    });
+
+    return this.http.post(`${this.baseUrl}/AuthenticateToken/Logout`, {}, { headers }).pipe(
+        tap({
+            next: () => {
+                console.log('Logout API call successful');
+                this.forceRedirect();
+            },
+            error: (err) => {
+                console.error('Logout API error:', err);
+                this.forceRedirect();
+            }
+        }),
+        catchError(err => {
+            this.forceRedirect();
+            return throwError(() => err);
+        })
+    );
+}
+
+private forceRedirect(): void {
+    this.router.navigate(['/auth-2/sign-in']).then(() => {
+        //window.location.reload();
+    });
+}
 
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);

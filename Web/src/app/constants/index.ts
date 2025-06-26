@@ -7,8 +7,8 @@ export const currency: CurrencyType = '$'
 export const currentYear = new Date().getFullYear()
 
 export const credits = {
-  website: 'https://webapplayers.com/',
-  name: 'WebAppLayers',
+  website: 'https://https://teknoloje.com//',
+  name: 'Teknoloje Solutions',
   buyLink: '',
 }
 

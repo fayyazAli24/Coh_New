@@ -50,9 +50,15 @@ export const userDropdownItems: UserDropdownItemType[] = [
         url: 'auth-lock-screen.html'
     },
     {
-        label: 'Log Out',
+        // label: 'Log Out',
+        // icon: 'tablerLogout2',
+        // url: '',
+        // class: 'text-danger fw-semibold',
+        // action: 'logout'
+
+         label: 'Log Out',
         icon: 'tablerLogout2',
-        url: '#',
+        url: '', // Remove the #
         class: 'text-danger fw-semibold',
         action: 'logout'
     }
