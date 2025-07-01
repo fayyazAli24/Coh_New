@@ -9,10 +9,15 @@ export const DASHBOARDS_ROUTES: Routes = [
     //     component: Dashboard1Component,
     //     data: {title: "Dashboard"},
     // },
+    
     {
         path: 'dashboards/dashboard-2',
         component: Dashboard2Component,
-        data: {title: "Dashboard 2"},
+        // data: {title: "Dashboard 2"},
+         data: { 
+      title: 'Dashboard 2',
+      permissions: ['Dashboards:View'] 
+    }
     },
     // {
     //     path: 'dashboards/dashboard-3',

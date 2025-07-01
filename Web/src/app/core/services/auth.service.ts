@@ -96,8 +96,17 @@ private forceRedirect(): void {
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
   }
+isTokenExpired(): boolean {
+  const token = this.getToken();
+  if (!token) return true;
 
+  const payload = JSON.parse(atob(token.split('.')[1]));
+  const expiry = payload.exp * 1000;
+  return Date.now() > expiry;
+}
+  
   isAuthenticated(): boolean {
-    return !!this.getToken();
-  }
+  const token = this.getToken();
+  return !!token && !this.isTokenExpired();
+}
 }

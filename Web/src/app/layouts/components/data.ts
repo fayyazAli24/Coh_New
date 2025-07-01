@@ -10,6 +10,9 @@ type UserDropdownItemType = {
      action?: 'logout' | string; 
 
 }
+export interface ExtendedMenuItemType extends MenuItemType {
+  module?: string;
+}
 
 export const userDropdownItems: UserDropdownItemType[] = [
     {
@@ -64,7 +67,7 @@ export const userDropdownItems: UserDropdownItemType[] = [
     }
 ];
 
-export const menuItems: MenuItemType[] = [
+export const menuItems: ExtendedMenuItemType[] = [
     {label: 'Menu', isTitle: true},
     // {
     //     label: 'Dashboards',
@@ -84,6 +87,21 @@ export const menuItems: MenuItemType[] = [
     //     icon: 'tablerStackFront',
     //     url: '/landing',
     // },
+
+  { label: 'Menu', isTitle: true },
+
+  // ✅ Clinical Module Section (permission based)
+  {
+    label: 'Clinical',
+    icon: 'tablerHeartbeat',
+    module: 'Clinical', // 👈 this is used by PermissionService
+    isCollapsed: true,
+    children: [
+      { label: 'Medical History', url: '/clinical/medical-history' },
+      { label: 'Alerts', url: '/clinical/alerts' }
+    ]
+  },
+
 
     {label: 'Apps', isTitle: true},
     {
