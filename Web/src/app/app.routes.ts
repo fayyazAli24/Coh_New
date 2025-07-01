@@ -18,7 +18,7 @@ export const routes: Routes = [
     },
     {
       path: 'clinical',
-      canActivate: [modulePermissionGuard],
+      canActivate: [authGuard,modulePermissionGuard],
       data: { module: 'Clinical' },
       loadChildren: () => import('./views/clinical/clinical.module').then((m) => m.ClinicalModule)
     }
