@@ -11,4 +11,4 @@ import { Registration_ROUTES } from './registration.routes';
      RouterModule.forChild(Registration_ROUTES)
   ]
 })
-export class ClinicalModule { }
+export class RegistrationModule { }
