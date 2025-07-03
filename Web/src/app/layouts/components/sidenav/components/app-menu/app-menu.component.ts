@@ -27,17 +27,40 @@ export class AppMenuComponent implements OnInit {
 
     menuItems = menuItems;
 
-    ngOnInit(): void {
-        this.router.events
-            .pipe(filter(event => event instanceof NavigationEnd))
-            .subscribe(() => {
-                this.expandActivePaths(this.menuItems);
-                setTimeout(() => this.scrollToActiveLink(), 50);
-            });
+    // ngOnInit(): void {
+    //     this.router.events
+    //         .pipe(filter(event => event instanceof NavigationEnd))
+    //         .subscribe(() => {
+    //             this.expandActivePaths(this.menuItems);
+    //             setTimeout(() => this.scrollToActiveLink(), 50);
+    //         });
 
-        this.expandActivePaths(this.menuItems);
-        setTimeout(() => this.scrollToActiveLink(), 100);
+    //     this.expandActivePaths(this.menuItems);
+    //     setTimeout(() => this.scrollToActiveLink(), 100);
+    // }
+
+    ngOnInit(): void {
+        debugger
+            const sessionData = sessionStorage.getItem('allowscreens');
+const allowedScreens = JSON.parse(sessionStorage.getItem('allowscreens') || '[]');
+
+        //const allowedScreens = JSON.parse(localStorage.getItem('allowscreens') || '[]');
+
+    const loginData = JSON.parse(localStorage.getItem('allowscreens') || '{}');
+    if (allowedScreens?.length) {
+        this.menuItems = this.buildMenuItemsFromScreens(allowedScreens);
     }
+
+    this.router.events
+        .pipe(filter(event => event instanceof NavigationEnd))
+        .subscribe(() => {
+            this.expandActivePaths(this.menuItems);
+            setTimeout(() => this.scrollToActiveLink(), 50);
+        });
+
+    this.expandActivePaths(this.menuItems);
+    setTimeout(() => this.scrollToActiveLink(), 100);
+}
 
     hasSubMenu(item: MenuItemType): boolean {
         return !!item.children;
@@ -75,5 +98,75 @@ export class AppMenuComponent implements OnInit {
             scrollToElement(scrollContainer, scrollContainer.scrollTop + offset, 500);
         }
     }
+
+//     // This should be in a utility file or inside AppMenuComponent
+//  buildMenuItemsFromScreens(screens: string[]): MenuItemType[] {
+//     debugger
+//   const menuMap: Map<string, MenuItemType> = new Map();
+
+//   for (const screen of screens) {
+//     const parts = screen.split(':');
+//     const moduleName = parts[0];
+//     const screenName = parts[1] ?? moduleName;
+
+//     if (!menuMap.has(moduleName)) {
+//       menuMap.set(moduleName, {
+//         label: moduleName,
+//         isCollapsed: true,
+//         children: []
+//       });
+//     }
+
+//     const parent = menuMap.get(moduleName)!;
+
+//     // Avoid putting the module title itself as a child (e.g., "Control Panel")
+//     if (screen !== moduleName) {
+//       parent.children!.push({
+//         label: screenName,
+//         url: `/${moduleName.toLowerCase().replace(/ /g, '-')}/${screenName.toLowerCase().replace(/ /g, '-')}`
+//       });
+//     }
+//   }
+
+//   return Array.from(menuMap.values());
+// }
+
+buildMenuItemsFromScreens(screens: string[]): MenuItemType[] {
+  const menuMap: Map<string, MenuItemType> = new Map();
+
+  for (const screen of screens) {
+    const parts = screen.split(':');
+    const moduleName = parts[0];
+    const screenName = parts[1] ?? moduleName;
+
+    if (!menuMap.has(moduleName)) {
+      menuMap.set(moduleName, {
+        label: moduleName,
+        isCollapsed: true,
+        children: []
+      });
+    }
+
+    const parent = menuMap.get(moduleName)!;
+
+    // Avoid putting the module title itself as a child
+    if (screen !== moduleName) {
+      // ✅ Check for duplicates
+      const alreadyExists = parent.children!.some(
+        child => child.label === screenName
+      );
+
+      if (!alreadyExists) {
+        parent.children!.push({
+          label: screenName,
+          url: `/${moduleName.toLowerCase().replace(/ /g, '-')}/${screenName.toLowerCase().replace(/ /g, '-')}`
+        });
+      }
+    }
+  }
+
+  return Array.from(menuMap.values());
+}
+
 
 }
