@@ -1,3 +1,4 @@
+import { ProblemComponent } from './../../views/clinical/problem/problem.component';
 import {MenuItemType} from '@/app/types/layout';
 
 type UserDropdownItemType = {
@@ -105,10 +106,34 @@ export const menuItems: ExtendedMenuItemType[] = [
       { label: 'Problem List', url: '/clinical/problem'},
       { label: 'Medical History', url: '/clinical/medical-history' },
       //{ label: 'Favorites', url: '/clinical/favorites'}
+      { label: 'Problem', url: '/clinical/problem'},
 
 
     ]
   },
+
+  { label: 'Menu', isTitle: true },
+
+  // ✅ Clinical Module Section (permission based)
+  {
+    label: 'Registration',
+    icon: 'tablerHeartbeat',
+    module: 'Registration',
+    isCollapsed: true,
+    children: [
+
+      { label: 'Alerts', url: '/registartion/alerts' },
+      { label: 'Allergies', url: '/clinical/allergies'},
+    //   { label: 'Problem List', url: '/clinical/problem-list'},
+      { label: 'Problem List', url: '/clinical/problem'},
+      { label: 'Medical History', url: '/clinical/medical-history' },
+      //{ label: 'Favorites', url: '/clinical/favorites'}
+      { label: 'Problem', url: '/clinical/problem'},
+
+
+    ]
+  },
+
 
 
     {label: 'Apps', isTitle: true},

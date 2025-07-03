@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { AlertComponent } from './alert/alert.component';
+
 import { authGuard } from '@/app/core/guards/auth.guard';
 import { MedicalHistoryComponent } from './medical-history/medical-history.component';
 import { ProblemListComponent } from './problem-list/problem-list.component';
@@ -11,13 +11,9 @@ export const CLINICAL_ROUTES: Routes = [
   {
     path: '',
     canActivate: [authGuard],
-    data: { permissions: ['Clinical:Medical History'] },
+    data: { permissions: ['Clinical:Medical History','Registration:Alerts']},
     children: [
-      {
-        path: 'alerts',
-        component: AlertComponent,
-        data: { title: 'Clinical Alerts' }
-      },
+
          {
         path: 'medical-history',
         component: MedicalHistoryComponent,
