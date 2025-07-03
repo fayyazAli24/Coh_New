@@ -1,1 +1,36 @@
-<p>medical-history works!</p>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-light bg-opacity-50 p-2 mb-2">
+      <li class="breadcrumb-item">
+        <a href="javascript:void(0);">
+          <ng-icon name="tablerSmartHome"></ng-icon>
+          Clinical
+        </a>
+      </li>
+      <li class="d-flex align-items-center text-muted mx-1" aria-current="page">
+        <ng-icon name="tablerChevronRight"></ng-icon>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Medical History</li>
+    </ol>
+  </nav>
+
+<ul ngbNav #nav="ngbNav" [(activeId)]="activeTabId" class="nav nav-tabs mb-3">
+    <!-- Favorites Tab -->
+    <li [ngbNavItem]="1">
+      <a ngbNavLink href="javascript:void(0)">Problem</a>
+      <ng-template ngbNavContent>
+        <app-problem-list></app-problem-list>
+      </ng-template>
+    </li>
+
+    <!-- Problem List Tab -->
+    <li [ngbNavItem]="2">
+      <a ngbNavLink href="javascript:void(0)">Favorites</a>
+      <ng-template ngbNavContent>
+        <app-favorites></app-favorites>
+             <!-- ✅ Calling Problem List Component --> -->
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav"></div>
+

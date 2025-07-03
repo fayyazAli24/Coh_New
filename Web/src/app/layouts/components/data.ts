@@ -7,9 +7,10 @@ type UserDropdownItemType = {
     isDivider?: boolean;
     isHeader?: boolean;
     class?: string;
-     action?: 'logout' | string; 
+     action?: 'logout' | string;
 
 }
+
 export interface ExtendedMenuItemType extends MenuItemType {
   module?: string;
 }
@@ -97,8 +98,15 @@ export const menuItems: ExtendedMenuItemType[] = [
     module: 'Clinical', // 👈 this is used by PermissionService
     isCollapsed: true,
     children: [
+
+      { label: 'Alerts', url: '/clinical/alerts' },
+      { label: 'Allergies', url: '/clinical/allergies'},
+    //   { label: 'Problem List', url: '/clinical/problem-list'},
+      { label: 'Problem List', url: '/clinical/problem'},
       { label: 'Medical History', url: '/clinical/medical-history' },
-      { label: 'Alerts', url: '/clinical/alerts' }
+      //{ label: 'Favorites', url: '/clinical/favorites'}
+
+
     ]
   },
 

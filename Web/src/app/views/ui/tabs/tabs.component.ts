@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import {PageTitleComponent} from '@app/components/page-title.component';
-import {UiCardComponent} from '@app/components/ui-card.component';
-import {NgIcon} from '@ng-icons/core';
-import {NgbNavModule} from '@ng-bootstrap/ng-bootstrap';
+import { PageTitleComponent} from '@app/components/page-title.component';
+import { UiCardComponent} from '@app/components/ui-card.component';
+import { NgIcon} from '@ng-icons/core';
+import { NgbNavModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-tabs',
