@@ -99,10 +99,19 @@ const allowedScreens = JSON.parse(sessionStorage.getItem('allowscreens') || '[]'
         }
     }
 
-//     // This should be in a utility file or inside AppMenuComponent
-//  buildMenuItemsFromScreens(screens: string[]): MenuItemType[] {
-//     debugger
+
+
+// buildMenuItemsFromScreens(screens: string[]): MenuItemType[] {
 //   const menuMap: Map<string, MenuItemType> = new Map();
+
+//   const iconLookup = new Map<string, string>();
+//   for (const item of menuItems) {
+//     const key = item.module || item.label;
+//     if (key && item.icon) {
+//       iconLookup.set(key, item.icon);
+//     }
+//   }
+
 
 //   for (const screen of screens) {
 //     const parts = screen.split(':');
@@ -113,48 +122,72 @@ const allowedScreens = JSON.parse(sessionStorage.getItem('allowscreens') || '[]'
 //       menuMap.set(moduleName, {
 //         label: moduleName,
 //         isCollapsed: true,
+//          icon: iconLookup.get(moduleName), 
 //         children: []
 //       });
 //     }
 
 //     const parent = menuMap.get(moduleName)!;
 
-//     // Avoid putting the module title itself as a child (e.g., "Control Panel")
+//     // Avoid putting the module title itself as a child
 //     if (screen !== moduleName) {
-//       parent.children!.push({
-//         label: screenName,
-//         url: `/${moduleName.toLowerCase().replace(/ /g, '-')}/${screenName.toLowerCase().replace(/ /g, '-')}`
-//       });
+//       // ✅ Check for duplicates
+//       const alreadyExists = parent.children!.some(
+//         child => child.label === screenName
+//       );
+
+//       if (!alreadyExists) {
+//         parent.children!.push({
+//           label: screenName,
+//           url: `/${moduleName.toLowerCase().replace(/ /g, '-')}/${screenName.toLowerCase().replace(/ /g, '-')}`
+//         });
+//       }
 //     }
 //   }
 
 //   return Array.from(menuMap.values());
 // }
 
+
 buildMenuItemsFromScreens(screens: string[]): MenuItemType[] {
   const menuMap: Map<string, MenuItemType> = new Map();
 
+  // ✅ Step 1: Build lookup maps from static menuItems
+  const validModules = new Set<string>();
+  const iconLookup = new Map<string, string>();
+
+  for (const item of menuItems) {
+    const key = item.module || item.label;
+    if (key) {
+      validModules.add(key);
+      if (item.icon) iconLookup.set(key, item.icon);
+    }
+  }
+
+  // ✅ Step 2: Loop through allowed screens
   for (const screen of screens) {
     const parts = screen.split(':');
     const moduleName = parts[0];
     const screenName = parts[1] ?? moduleName;
 
+    // ❌ Skip if module is not in static menu (data.ts)
+    if (!validModules.has(moduleName)) continue;
+
+    // ✅ Create module if not exists
     if (!menuMap.has(moduleName)) {
       menuMap.set(moduleName, {
         label: moduleName,
         isCollapsed: true,
+        icon: iconLookup.get(moduleName),
         children: []
       });
     }
 
     const parent = menuMap.get(moduleName)!;
 
-    // Avoid putting the module title itself as a child
+    // ✅ Add child screen (avoiding module-only rows and duplicates)
     if (screen !== moduleName) {
-      // ✅ Check for duplicates
-      const alreadyExists = parent.children!.some(
-        child => child.label === screenName
-      );
+      const alreadyExists = parent.children!.some(child => child.label === screenName);
 
       if (!alreadyExists) {
         parent.children!.push({
