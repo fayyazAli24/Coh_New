@@ -23,11 +23,12 @@ export const routes: Routes = [
       loadChildren: () => import('./views/clinical/clinical.module').then((m) => m.ClinicalModule)
     },
     {
-        path: 'Registration',
-        canActivate: [authGuard,modulePermissionGuard],
-        data: { module: 'Registration' },
-        loadChildren: () => import('./views/clinical/clinical.module').then((m) => m.ClinicalModule)
-      }
+      path: 'registration',
+      canActivate: [authGuard,modulePermissionGuard],
+      data: { module: 'Registration' },
+      loadChildren: () => import('./views/registration/registration.module').then((m) => m.RegistrationModule)
+    }
+
   ],
     },
     {
