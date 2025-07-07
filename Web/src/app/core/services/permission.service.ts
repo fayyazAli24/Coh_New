@@ -6,7 +6,7 @@ export class PermissionService {
   private permissions: Set<string> = new Set();
 private screenPermissions: string[] = [];
   private modulePermissions: Set<string> = new Set();
-  
+
   constructor() {
     debugger
      this.loadPermissions();
@@ -18,8 +18,6 @@ private screenPermissions: string[] = [];
   }
 
     private extractModules() {
-      debugger
-      console.log('arhi hy?');
       debugger
     this.screenPermissions.forEach(screen => {
       const parts = screen.split(':');
@@ -62,6 +60,7 @@ private screenPermissions: string[] = [];
     this.loadPermissions();
   }
   hasModule(module: string): boolean {
+    debugger
   return this.modulePermissions.has(module);
 }
 

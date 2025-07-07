@@ -77,7 +77,7 @@ export class AlertComponent implements OnInit {
     }
 
     goBackToList() {
-      this.router.navigate(['']);
+      this.router.navigate(['dashboards/dashboard-2']);
     }
 
     onSubmit() {

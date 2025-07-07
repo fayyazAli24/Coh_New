@@ -27,7 +27,14 @@ export const routes: Routes = [
       canActivate: [authGuard,modulePermissionGuard],
       data: { module: 'Registration' },
       loadChildren: () => import('./views/registration/registration.module').then((m) => m.RegistrationModule)
-    }
+    },
+    {
+        path: 'control-panel',
+        canActivate: [authGuard, modulePermissionGuard],
+        data: { module: 'Control Panel' },
+        loadChildren: () => import('./views/control-panel/control-panel.module').then((m) => m.ControlPanelModule)
+      }
+
 
   ],
     },

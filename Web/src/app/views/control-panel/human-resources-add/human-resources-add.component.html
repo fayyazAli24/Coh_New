@@ -1,0 +1,109 @@
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-light bg-opacity-50 p-2 mb-3">
+      <li class="breadcrumb-item">
+        <a href="javascript:void(0);">
+          <ng-icon name="tablerSmartHome"></ng-icon>
+          Control Panel
+        </a>
+      </li>
+      <li class="d-flex align-items-center text-muted mx-1" aria-current="page">
+        <ng-icon name="tablerChevronRight"></ng-icon>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Human Resources Add</li>
+    </ol>
+  </nav>
+
+<div class="card p-3 shadow rounded">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="fw-bold mb-0">Create User</h3>
+  </div>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="row align-items-end">
+      <!-- Name -->
+      <div class="col-lg-3">
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input type="text" formControlName="name" class="form-control" placeholder="Enter name" />
+        </div>
+      </div>
+
+      <!-- Gender -->
+      <div class="col-lg-3">
+        <div class="mb-3">
+          <label class="form-label">Gender</label>
+          <select class="form-select" formControlName="gender">
+            <option value="" disabled>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Employee Type -->
+      <div class="col-lg-3">
+        <div class="mb-3">
+          <label class="form-label">Employee Type</label>
+          <select class="form-select" formControlName="employeeType">
+            <option value="" disabled>Select Type</option>
+            <option value="Full-time">Full-time</option>
+            <option value="Part-time">Part-time</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Phone -->
+<div class="col-lg-3">
+  <div class="mb-3">
+    <label class="form-label">Phone</label>
+<input
+  type="text"
+  class="form-control"
+  formControlName="phone"
+  placeholder="03XXXXXXXXX"
+  mask="00000000000"
+/>
+    <div *ngIf="userForm.get('phone')?.invalid && userForm.get('phone')?.touched" class="text-danger mt-1">
+      Please enter a valid phone number
+    </div>
+  </div>
+</div>
+
+
+
+      <!-- Email -->
+      <div class="col-lg-3">
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" formControlName="email" placeholder="example@email.com" />
+        </div>
+      </div>
+
+      <!-- Joining Date -->
+      <div class="col-lg-3">
+        <div class="mb-3">
+          <label class="form-label">Joining Date</label>
+          <input type="date" class="form-control" formControlName="joiningDate" />
+        </div>
+      </div>
+
+      <!-- Active Checkbox -->
+      <!-- <div class="col-lg-3">
+        <div class="form-check mt-4">
+          <input type="checkbox" id="active" formControlName="active" class="form-check-input" />
+          <label for="active" class="form-check-label">Active</label>
+        </div>
+      </div> -->
+
+      <!-- Buttons -->
+  <div class="col-12 mt-3 d-flex justify-content-end">
+  <!-- <button type="submit" class="btn btn-primary me-2 w-150">Save</button>
+  <button type="button" class="btn btn-secondary w-150" (click)="router.navigate(['/control-panel/human-resources'])">Back to List</button> -->
+  <button type="submit" class="btn btn-primary me-2 w-150">Save</button>
+  <button type="button" class="btn btn-secondary" (click)="router.navigate(['/control-panel/human-resources'])">Back</button>
+
+</div>
+
+    </div>
+  </form>
+</div>

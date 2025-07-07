@@ -7,6 +7,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { ProblemComponent } from './problem/problem.component';
 import { AllergiesComponent } from './allergies/allergies.component';
 
+
 export const CLINICAL_ROUTES: Routes = [
   {
     path: '',
@@ -19,20 +20,20 @@ export const CLINICAL_ROUTES: Routes = [
         component: MedicalHistoryComponent,
         data: { title: 'Medical History' }
       },
-      {
-        path: 'problem-list',
-        component: ProblemListComponent,
-        data: { title: 'Problem List' }
-      },
+    //   {
+    //     path: 'problem-list',
+    //     component: ProblemListComponent,
+    //     data: { title: 'Problem List' }
+    //   },
       {
         path: 'favorites',
         component: FavoritesComponent,
         data: { title: 'Favorites' }
       },
       {
-        path: 'problem',
+        path: 'problem-list',
         component: ProblemComponent,
-        data: { title: 'problem-list' }
+        data: { title: 'Problem List' }
       },
       {
         path: 'allergies',

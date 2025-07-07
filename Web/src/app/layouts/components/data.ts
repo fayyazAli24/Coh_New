@@ -117,22 +117,43 @@ export const menuItems: ExtendedMenuItemType[] = [
   // ✅ Clinical Module Section (permission based)
   {
     label: 'Registration',
-    icon: 'tablerHeartbeat',
+    icon: 'pi pi-clipboard',
     module: 'Registration',
     isCollapsed: true,
     children: [
 
       { label: 'Alerts', url: '/registartion/alerts' },
-      { label: 'Allergies', url: '/clinical/allergies'},
-    //   { label: 'Problem List', url: '/clinical/problem-list'},
-      { label: 'Problem List', url: '/clinical/problem'},
-      { label: 'Medical History', url: '/clinical/medical-history' },
-      //{ label: 'Favorites', url: '/clinical/favorites'}
-      { label: 'Problem', url: '/clinical/problem'},
-
 
     ]
   },
+
+
+
+  { label: 'Menu', isTitle: true },
+
+  // ✅ Clinical Module Section (permission based)
+
+  {
+    label: 'Control Panel',
+    icon: 'pi pi-clipboard',
+    module: 'Control Panel',
+    isCollapsed: true,
+    children: [
+
+        { label: 'Human Resources', url: '/control-panel/human-resources' },
+        { label: 'Human Resources Add', url: '/control-panel/human-resources-add' },
+ ]
+  },
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,5 +1,6 @@
+<!-- 🔹 Breadcrumb OUTSIDE card -->
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb bg-light bg-opacity-50 p-2 mb-2">
+    <ol class="breadcrumb bg-light bg-opacity-50 p-2 mb-3">
       <li class="breadcrumb-item">
         <a href="javascript:void(0);">
           <ng-icon name="tablerSmartHome"></ng-icon>
@@ -13,24 +14,31 @@
     </ol>
   </nav>
 
-<ul ngbNav #nav="ngbNav" [(activeId)]="activeTabId" class="nav nav-tabs mb-3">
-    <!-- Favorites Tab -->
-    <li [ngbNavItem]="1">
-      <a ngbNavLink href="javascript:void(0)">Problem</a>
-      <ng-template ngbNavContent>
-        <app-problem-list></app-problem-list>
-      </ng-template>
-    </li>
+  <!-- 🔹 Tabs INSIDE card -->
+  <div class="card shadow rounded">
+    <div class="card-body">
 
-    <!-- Problem List Tab -->
-    <li [ngbNavItem]="2">
-      <a ngbNavLink href="javascript:void(0)">Favorites</a>
-      <ng-template ngbNavContent>
-        <app-favorites></app-favorites>
-             <!-- ✅ Calling Problem List Component -->
-      </ng-template>
-    </li>
-  </ul>
+      <!-- Tabs -->
+      <ul ngbNav #nav="ngbNav" [(activeId)]="activeTabId" class="nav nav-tabs mb-3">
+        <!-- Problem Tab -->
+        <li [ngbNavItem]="1">
+          <a ngbNavLink href="javascript:void(0)">Problem</a>
+          <ng-template ngbNavContent>
+            <app-problem-list></app-problem-list>
+          </ng-template>
+        </li>
 
-  <div [ngbNavOutlet]="nav"></div>
+        <!-- Favorites Tab -->
+        <li [ngbNavItem]="2">
+          <a ngbNavLink href="javascript:void(0)">Favorites</a>
+          <ng-template ngbNavContent>
+            <app-favorites></app-favorites>
+          </ng-template>
+        </li>
+      </ul>
 
+      <!-- Tab Content -->
+      <div [ngbNavOutlet]="nav"></div>
+
+    </div>
+  </div>
