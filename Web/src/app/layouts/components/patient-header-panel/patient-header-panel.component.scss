@@ -1,0 +1,13 @@
+app-patient-header-panel {
+  border: 1px solid red;
+  display: block;
+  min-height: 100px;
+}
+
+
+.patient-header-panel.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}

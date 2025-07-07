@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {NgIcon} from '@ng-icons/core';
 import {LayoutStoreService} from '@core/services/layout-store.service';
@@ -19,13 +19,15 @@ import {UserProfileComponent} from '@layouts/components/topbar/components/user-p
 import {
     NotificationDropdownComponent
 } from '@layouts/components/topbar/components/notification-dropdown/notification-dropdown.component';
+import { AccordionService } from '@core/services/accordion.service';
+import { IconsModule } from '@/app/shared/icons.module';
+import { Stethoscope } from 'lucide-angular'; // 👈 this is required
 
 @Component({
     selector: 'app-topbar',
     imports: [
         NgIcon,
         RouterLink,
-        LucideAngularModule,
         MegaMenuComponent,
         // LanguageDropdownComponent,
         // MessagesDropdownComponent,
@@ -33,11 +35,16 @@ import {
         ThemeTogglerComponent,
         UserProfileComponent,
         NotificationDropdownComponent,
+        IconsModule
+
     ],
+     standalone: true,
     templateUrl: './topbar.component.html'
 })
 export class TopbarComponent {
-    constructor(public layout: LayoutStoreService) {
+    constructor(public layout: LayoutStoreService,
+        private accordionService: AccordionService
+    ) {
     }
 
     toggleSidebar() {
@@ -57,4 +64,13 @@ export class TopbarComponent {
     }
 
     Search = Search;
+
+  @Output() patientBannerToggle = new EventEmitter<boolean>();
+  showPatientBanner = true;
+
+
+   togglePatientBanner() {
+    this.showPatientBanner = !this.showPatientBanner;
+    this.patientBannerToggle.emit(this.showPatientBanner);
+  }
 }

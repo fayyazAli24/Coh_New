@@ -7,11 +7,11 @@ import {LayoutStoreService} from '@core/services/layout-store.service';
 @Component({
     selector: 'app-main-layout',
     imports: [
-        VerticalLayoutComponent,
-        RouterOutlet,
-        HorizontalLayoutComponent,
+    VerticalLayoutComponent,
+    RouterOutlet,
+    HorizontalLayoutComponent
 
-    ],
+],
     templateUrl: './main-layout.component.html',
 })
 export class MainLayoutComponent {
