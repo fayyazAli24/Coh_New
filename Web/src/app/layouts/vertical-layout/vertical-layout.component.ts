@@ -5,17 +5,20 @@ import {SidenavComponent} from '@layouts/components/sidenav/sidenav.component';
 import {TopbarComponent} from '@layouts/components/topbar/topbar.component';
 import {FooterComponent} from '@layouts/components/footer/footer.component';
 import {debounceTime, fromEvent, Subscription} from 'rxjs';
+import { PatientHeaderPanelComponent } from "../components/patient-header-panel/patient-header-panel.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-vertical-layout',
-    imports: [RouterOutlet, SidenavComponent, TopbarComponent, FooterComponent],
+    imports: [RouterOutlet, SidenavComponent, TopbarComponent, FooterComponent, PatientHeaderPanelComponent,CommonModule],
     templateUrl: './vertical-layout.component.html',
     styles: ``
 })
 export class VerticalLayoutComponent implements OnInit, OnDestroy {
     constructor(public layout: LayoutStoreService) {
     }
-
+    showPatientBanner = true;
+    isPinned = false;
     resizeSubscription!: Subscription;
 
     ngOnInit() {
@@ -42,4 +45,9 @@ export class VerticalLayoutComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.resizeSubscription?.unsubscribe();
     }
+     
+
+   togglePatientBanner(visible: boolean) {
+    this.showPatientBanner = visible;
+  }
 }

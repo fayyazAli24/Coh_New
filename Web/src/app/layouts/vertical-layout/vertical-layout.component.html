@@ -2,10 +2,21 @@
 
   <app-sidenav/>
 
-  <app-topbar/>
+  <!-- <app-topbar/> -->
+  <app-topbar (patientBannerToggle)="togglePatientBanner($event)"></app-topbar>
 
   <div class="content-page">
+ 
 
+<app-patient-header-panel
+
+
+    [state]="showPatientBanner || isPinned ? 'visible' : 'hidden'"
+  [pinned]="isPinned"
+  (pinnedChange)="isPinned = $event"
+></app-patient-header-panel>
+
+    
     <router-outlet/>
 
     <app-footer/>
@@ -13,3 +24,4 @@
   </div>
 
 </div>
+ 
