@@ -127,6 +127,16 @@ export const menuItems: ExtendedMenuItemType[] = [
     ]
   },
 
+  {
+    label: 'Billing',
+    icon: 'tablerHeartbeat',
+    module: 'Billing', // 👈 this is used by PermissionService
+    isCollapsed: true,
+    children: [
+
+      { label: 'Charge Capture', url: '/billing/charge-capture' },
+    ]
+  },
 
 
   { label: 'Menu', isTitle: true },

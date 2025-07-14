@@ -8,7 +8,8 @@ import {
   ChevronDown,
   ChevronUp,
     Pin,
-    PinOff
+    PinOff,
+    Trash2
 
 } from 'lucide-angular';
 
@@ -20,7 +21,8 @@ const icons = {
   ChevronDown,
   ChevronUp,
     Pin,
-    PinOff
+    PinOff,
+    Trash2
 
 };
 @NgModule({
